@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SiteSpark AI — Turn ideas into websites</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#"><span class="brand-mark">✳</span><span>SiteSpark<span class="brand-ai"> AI</span></span></a>
+      <div class="side-label">WORKSPACE</div>
+      <button class="side-link active" id="newProjectBtn"><span>＋</span> New website</button>
+      <button class="side-link" id="examplesBtn"><span>▦</span> Example prompts</button>
+      <div class="side-label recent-label">QUICK START</div>
+      <button class="mini-project" data-prompt="Create a premium portfolio website for a Java developer named Alex. Use a dark navy theme, project cards, skills, and a contact section."><span class="project-dot violet"></span><span><b>Developer portfolio</b><small>Personal brand</small></span></button>
+      <button class="mini-project" data-prompt="Create a modern website for a specialty coffee shop called Ember & Oak. Warm cream colors, menu highlights, our story, and visit-us section."><span class="project-dot orange"></span><span><b>Coffee shop</b><small>Local business</small></span></button>
+      <button class="mini-project" data-prompt="Create a clean landing page for an AI productivity startup called FlowPilot. Include product benefits, features, testimonials, and a get-started call to action."><span class="project-dot blue"></span><span><b>Startup landing page</b><small>SaaS product</small></span></button>
+      <div class="sidebar-bottom"><div class="avatar">V</div><div><b>Creator workspace</b><small>Free plan · Demo mode</small></div><span class="status-dot"></span></div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div class="breadcrumb"><span>Workspace</span><span class="crumb-slash">/</span><b id="projectName">New website</b></div>
+        <div class="top-actions"><span class="demo-pill"><span></span> Interactive demo</span><button class="btn btn-ghost" id="resetBtn">Reset</button><button class="btn btn-primary" id="exportTopBtn">↧ Export HTML</button></div>
+      </header>
+
+      <section class="welcome" id="welcome">
+        <div class="eyebrow"><span class="sparkle">✦</span> YOUR IDEA, BEAUTIFULLY BUILT</div>
+        <h1>What will you <span>create today?</span></h1>
+        <p>Describe your idea. SiteSpark turns it into a website concept you can customize, preview, and export.</p>
+      </section>
+
+      <section class="builder-grid">
+        <div class="control-panel">
+          <div class="panel-heading"><div><span class="step-chip">01</span><h2>Describe your website</h2></div><span class="tiny-tag">PROMPT</span></div>
+          <label for="promptInput">What kind of website do you need?</label>
+          <textarea id="promptInput" placeholder="e.g. A modern portfolio for a Java developer with a dark theme, project cards, and a contact section..."></textarea>
+          <div class="prompt-footer"><span><span class="small-spark">✦</span> Be specific for better results</span><span id="charCount">0 /2000</span></div>
+          <button class="btn btn-generate" id="generateBtn"><span>✦</span> Generate my website <span class="arrow">↗</span></button>
+          <div class="or-divider"><span></span> OR START WITH AN IDEA <span></span></div>
+          <div class="prompt-chips">
+            <button class="prompt-chip" data-prompt="Create a premium portfolio website for a Java developer named Alex. Use a dark navy theme, project cards, skills, and a contact section."><span>◈</span> Developer portfolio</button>
+            <button class="prompt-chip" data-prompt="Create a modern website for a specialty coffee shop called Ember & Oak. Warm cream colors, menu highlights, our story, and visit-us section."><span>☕</span> Local business</button>
+            <button class="prompt-chip" data-prompt="Create a clean landing page for an AI productivity startup called FlowPilot. Include product benefits, features, testimonials, and a get-started call to action."><span>✧</span> SaaS landing page</button>
+          </div>
+
+          <div class="panel-heading customize-heading"><div><span class="step-chip">02</span><h2>Customize design</h2></div><span class="tiny-tag">STYLE</span></div>
+          <label>Color mood</label>
+          <div class="theme-options">
+            <button class="theme-option selected" data-theme="violet"><span class="swatches"><i style="background:#7667f5"></i><i style="background:#17172b"></i></span><span>Cosmic violet</span><b>✓</b></button>
+            <button class="theme-option" data-theme="ocean"><span class="swatches"><i style="background:#167d91"></i><i style="background:#0d2734"></i></span><span>Ocean blue</span><b>✓</b></button>
+            <button class="theme-option" data-theme="sunset"><span class="swatches"><i style="background:#ef805e"></i><i style="background:#38251f"></i></span><span>Warm sunset</span><b>✓</b></button>
+          </div>
+          <label for="layoutSelect" class="layout-label">Website layout</label>
+          <select id="layoutSelect"><option value="balanced">Balanced — hero + feature cards</option><option value="minimal">Minimal — clean and spacious</option><option value="bold">Bold — oversized typography</option></select>
+          <div class="helper-note"><span>✦</span><div><b>Smart design tip</b><p>Describe the audience and goal to get more relevant sections and copy.</p></div></div>
+        </div>
+
+
+<div class="preview-panel">
+  <div class="preview-toolbar">
+    <div class="preview-title">
+      <span class="live-dot"></span>
+      <b>Live preview</b>
+      <span class="preview-status" id="previewStatus">Waiting for your idea</span>
+    </div>
+    <div class="preview-actions">
+      <button class="device-btn active" data-device="desktop" title="Desktop preview">▰</button>
+      <button class="device-btn" data-device="mobile" title="Mobile preview">▯</button>
+      <button class="icon-btn" id="openPreviewBtn" title="Open preview in new tab">↗</button>
+    </div>
+  </div>
+
+  <div class="browser-frame" id="browserFrame">
+    <div class="browser-top">
+      <div class="traffic"><i></i><i></i><i></i></div>
+      <div class="address-bar">✦ &nbsp; your-website.sitespark.app</div>
+      <div class="browser-menu">•••</div>
+    </div>
+    <div class="website-canvas" id="websiteCanvas">
+      <div class="empty-state">
+        <div class="empty-icon">✳</div>
+        <h3>Your next idea starts here.</h3>
+        <p>Enter a prompt and generate your first website preview.</p>
+        <div class="empty-skeleton"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="preview-bottom">
+    <span><span class="check-icon">✓</span> Responsive preview</span>
+    <span id="sectionCount">0 sections</span>
+    <button id="regenerateBtn" class="text-action">↻ Regenerate</button>
+  </div>
+
+  <div class="edit-strip">
+    <div class="edit-strip-icon">✎</div>
+    <div>
+      <b>Make it yours</b>
+      <p>Generate a design, then edit the headline or add a section below.</p>
+    </div>
+    <button id="editHeadlineBtn" class="btn btn-small">Edit headline</button>
+  </div>
+
+  <!-- Website Goal Checker -->
+  <div class="goal-checker">
+    <h3>✦ Website Goal Checker</h3>
+    <p>Check whether your website includes the essentials.</p>
+    <div id="goalResults">
+      Generate a website to check its sections.
+    </div>
+    <button id="checkGoalBtn" class="btn btn-small">
+      Check My Website
+    </button>
+  </div>
+</div>
+</section>
+
+      </section>
+
+      <section class="bottom-row">
+        <div class="bottom-card">
+          <div class="bottom-card-icon purple">✧</div><div><b>Prompt-powered concepts</b><p>Turn a plain-language brief into a tailored starting point.</p></div><span class="feature-number">01</span>
+        </div>
+        <div class="bottom-card">
+          <div class="bottom-card-icon blue">◫</div><div><b>Instant visual feedback</b><p>Switch themes and layouts while your preview updates.</p></div><span class="feature-number">02</span>
+        </div>
+        <div class="bottom-card">
+          <div class="bottom-card-icon green">↧</div><div><b>Portable HTML export</b><p>Take your generated concept with you as a standalone file.</p></div><span class="feature-number">03</span>
+        </div>
+      </section>
+      <footer><span>SiteSpark AI</span><span>Built to turn ideas into first drafts.</span><span>Prototype · v1.0</span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>
